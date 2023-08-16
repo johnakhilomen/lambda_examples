@@ -1,0 +1,27 @@
+{
+  "name": "lambda-dynamo-crud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "del": "npx serverless remove",
+    "deploy": "npx sls deploy",
+    "invoke-geturl": "npx serverless invoke -f getQueueUrl",
+    "test-1": "AWS_REGION=us-east-1 yarn test"
+  },
+  "jest": {
+    "setupFiles": ["jest-dynalite"]
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.6.2",
+    "serverless": "^3.34.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1438.0",
+    "jest-dynalite": "^3.6.1"
+  }
+}

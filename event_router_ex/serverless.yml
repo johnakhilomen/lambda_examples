@@ -1,0 +1,66 @@
+service: eventrouter-dynamodb-crud
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: dev
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/MyDynamoTableDev"
+
+functions:
+  create:
+    handler: handler.create
+    events:
+      - http:
+          path: create
+          method: post
+  read:
+    handler: handler.read
+    events:
+      - http:
+          path: read/{id}
+          method: get
+  update:
+    handler: handler.update
+    events:
+      - http:
+          path: update/{id}
+          method: put
+  delete:
+    handler: handler.delete
+    events:
+      - http:
+          path: delete/{id}
+          method: delete
+  router:
+    handler: handler.router
+    events:
+      - http:
+          path: router
+          method: post
+
+
+resources:
+  Resources:
+    MyDynamoTable:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        TableName: MyDynamoTableDev
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1

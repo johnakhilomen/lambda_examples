@@ -1,0 +1,20 @@
+{
+  "name": "basicex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test-addmessage": "QUEUE_URL=https://sqs.us-east-1.amazonaws.com/162250892293/my-sqs-queue AWS_REGION=us-east-1 yarn test",
+    "del": "npx serverless remove",
+    "deploy": "npx sls deploy",
+    "invoke-geturl": "npx serverless invoke -f getQueueUrl"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.6.2",
+    "serverless": "^3.34.0"
+  }
+}

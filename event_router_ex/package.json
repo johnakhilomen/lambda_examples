@@ -1,0 +1,22 @@
+{
+  "name": "eventrouter-dynamodb-crud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "del": "npx serverless remove",
+    "invoke": "npx serverless invoke -f basichandlerfunc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.6.2",
+    "serverless": "^3.34.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1438.0",
+    "jest-dynalite": "^3.6.1"
+  }
+}
